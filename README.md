@@ -22,6 +22,9 @@ Go to "ACP" > "Customise" > "Manage extensions" and enable the "Show Hidden Pass
 
 ## Changelog
 
+### v0.1.1 (07-08-2023)
+- Hide password reveal button in Edge
+
 ### v0.1.0 (07-08-2023)
 - Published
 
