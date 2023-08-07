@@ -1,0 +1,7 @@
+* text=auto
+* text eol=lf
+
+.gitattributes export-ignore
+.editorconfig export-ignore
+README.md export-ignore
+showhiddenpassword_version.json export-ignore
