@@ -7,7 +7,7 @@
  *
  */
 var imcgerPwInput = document.getElementById("password");
-var imcgerPwToggel = '<button id="imcger-pw-toggelbutton" type="button" class="button" onclick="imcgerToggelPw(this)"><i class="icon fa-eye fa-fw" aria-hidden="true"></i></button>';
+var imcgerPwToggel = '<button id="imcger-pw-toggelbutton" type="button" onclick="imcgerToggelPw(this)"><i class="icon fa-eye fa-fw" aria-hidden="true"></i></button>';
 
 if (imcgerPwInput) {
 	imcgerPwInput.insertAdjacentHTML("afterend", imcgerPwToggel);

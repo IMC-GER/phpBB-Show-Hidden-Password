@@ -22,6 +22,9 @@ Go to "ACP" > "Customise" > "Manage extensions" and enable the "Show Hidden Pass
 
 ## Changelog
 
+### v0.2.0 (08-08-2023)
+- Show toggel button in input field
+
 ### v0.1.1 (07-08-2023)
 - Hide password reveal button in Edge
 
