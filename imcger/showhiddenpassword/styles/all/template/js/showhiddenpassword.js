@@ -11,12 +11,13 @@ var imcgerPwToggel = '<button id="imcger-pw-toggelbutton" type="button" onclick=
 
 if (imcgerPwInput) {
 	imcgerPwInput.insertAdjacentHTML('afterend', imcgerPwToggel);
+	imcgerInitPw();
 }
 
 function imcgerToggelPw(button) {
 	let buttonIcon = button.children[0];
 
-	if (imcgerPwInput.type == 'password') {
+	if (imcgerPwInput.type  == 'password') {
 		imcgerPwInput.type	 = 'text';
 		buttonIcon.className = 'icon fa-eye-slash fa-fw';
 	} else {
@@ -29,10 +30,7 @@ function imcgerInitPw() {
 	let inputFieldWidth = parseInt(document.getElementById('username').clientWidth);
 
 	if (inputFieldWidth) {
-		let pwInput = document.getElementById('password');
-		pwInput.classList.remove('autowidth');
-		pwInput.style.width = inputFieldWidth + 'px';
+		imcgerPwInput.classList.remove('autowidth');
+		imcgerPwInput.style.width = inputFieldWidth + 'px';
 	}
 }
-
-window.addEventListener('load', imcgerInitPw);
