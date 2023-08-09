@@ -22,6 +22,9 @@ Go to "ACP" > "Customise" > "Manage extensions" and enable the "Show Hidden Pass
 
 ## Changelog
 
+### v0.2.1 (09-08-2023)
+- Alignment of elements optimized
+
 ### v0.2.0 (08-08-2023)
 - Show toggel button in input field
 
