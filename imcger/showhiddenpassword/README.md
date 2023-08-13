@@ -2,6 +2,11 @@
 
 ## Description
 Displays a button next to the password field with which you can make the hidden password visible.
+Important security measures have been built into the behavior of the toggle button to protect the user's password entry.
+- The show password button is not available until the user enters text in the password field.
+- When the password input field loses focus, the browser removes the password display button.
+- The button is not displayed when it is filled by the password manager.
+- When the password display button is removed, the user must clear the contents of the password input field to make the password display button appear again.
 
 ## Screenshots
 - [Login](https://raw.githubusercontent.com/IMC-GER/images/main/screenshots/showhiddenpassword/en/login-forum.png)
@@ -21,6 +26,10 @@ Go to "ACP" > "Customise" > "Manage extensions" and enable the "Show Hidden Pass
 - Go to "ACP" > "Customise" > "Manage extensions" and enable the "Show Hidden Password" extension.
 
 ## Changelog
+
+### v0.3.0 (13-08-2023)
+- Setting possible for individual styles
+- Add important security measures
 
 ### v0.2.1 (09-08-2023)
 - Alignment of elements optimized
