@@ -27,6 +27,10 @@ Go to "ACP" > "Customise" > "Manage extensions" and enable the "Show Hidden Pass
 
 ## Changelog
 
+### v0.3.1 (13-08-2023)
+- Wrong element alignment with different security settings in ACP
+- Script abort when "Forgot Password" disabled
+
 ### v0.3.0 (13-08-2023)
 - Setting possible for individual styles
 - Add important security measures

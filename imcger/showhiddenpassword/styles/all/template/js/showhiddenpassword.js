@@ -7,12 +7,12 @@
  *
  */
 const imcgerPwInput	= document.getElementById('password'),
-	  imcgerPwInputPaddRight = window.getComputedStyle(imcgerPwInput).getPropertyValue('padding-rigth'),
-	  imcgerPwInputPaddLeft = window.getComputedStyle(imcgerPwInput).getPropertyValue('padding-left'),
-	  imcgerPwForget = imcgerPwInput.parentElement.nextElementSibling,
-	  imcgerPwCode = '<button id="imcger-pw-togglebutton" type="button" onclick="imcgerTogglePw(this)"><i id="fa-eye" class="icon fa-eye fa-fw" aria-hidden="true"></i></button>';
+	  imcgerPwCode	= '<button id="imcger-pw-togglebutton" type="button" onclick="imcgerTogglePw(this)"><i id="fa-eye" class="icon fa-eye fa-fw" aria-hidden="true"></i></button>';
 
-var	imcgerPwToggle,
+
+var	imcgerPwInputPaddRight,
+	imcgerPwInputPaddLeft,
+	imcgerPwToggle,
 	imcgerPwToggleVisible = false,
 	imcgerPwForgetActive,
 	imcgerKeydownValue = 0,
@@ -21,19 +21,16 @@ var	imcgerPwToggle,
 // Initialize the form
 if (imcgerPwInput) {
 	imcgerPwInput.insertAdjacentHTML('afterend', imcgerPwCode);
-	imcgerPwToggle = imcgerPwInput.nextElementSibling;
+
+	imcgerPwInputPaddRight = window.getComputedStyle(imcgerPwInput).getPropertyValue('padding-rigth');
+	imcgerPwInputPaddLeft  = window.getComputedStyle(imcgerPwInput).getPropertyValue('padding-left');
+	imcgerPwToggle		   = imcgerPwInput.nextElementSibling;
 
 	imcgerSetPwWidth();
-	imcgerForgetPasswordAlign();
 	imcgerPwToggleOnOff('off');
-
-	imcgerPwForgetActive = imcgerPwForget.tagName.toLowerCase() == 'a' ? true : false;
-
-
 
 	window.addEventListener('resize', function () {
 		imcgerSetPwWidth();
-		imcgerForgetPasswordAlign();
 	});
 
 	imcgerPwInput.addEventListener('keydown', function () {
@@ -89,10 +86,6 @@ function imcgerTogglePw(button) {
 // Hide or Display the eye
 function imcgerPwToggleOnOff(toggleOn = 'off') {
 
-	if (parseInt(window.innerWidth) > 700 && imcgerPwForgetActive) {
-		imcgerPwForget.style.marginLeft	 = toggleOn == 'on' ? '13px' : '0';
-	}
-
 	if (toggleOn == 'on') {
 		imcgerPwToggle.style.display	 = 'initial';
 		imcgerPwInput.style.paddingRight = imcgerPwInputPaddRight;
@@ -114,16 +107,5 @@ function imcgerSetPwWidth() {
 	if (inputFieldWidth) {
 		imcgerPwInput.classList.remove('autowidth');
 		imcgerPwInput.style.width = inputFieldWidth + 'px';
-	}
-}
-
-// Align the margin of forget password
-function imcgerForgetPasswordAlign() {
-	if (imcgerPwForgetActive) {
-		imcgerPwForget.style.marginLeft = imcgerPwToggleVisible ? '13px' : '0';
-
-		if (parseInt(window.innerWidth) < 701) {
-			imcgerPwForget.style.marginLeft = '0';
-		}
 	}
 }
