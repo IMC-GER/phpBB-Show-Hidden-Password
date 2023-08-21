@@ -1,10 +1,10 @@
 {
     "name": "imcger/showhiddenpassword",
     "type": "phpbb-extension",
-    "description": "Displays a button next to the password field with which you can make the hidden password visible.",
+    "description": "Displays a button in the password field that allows you to make the hidden password visible.",
     "homepage": "",
-    "version": "0.3.1",
-    "time": "2023-08-13",
+    "version": "0.4.0",
+    "time": "2023-08-21",
     "license": "GPL-2.0-only",
     "authors": [{
             "name": "Thorsten Ahlers",

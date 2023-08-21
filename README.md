@@ -1,7 +1,7 @@
 # phpBB Show Hidden Password
 
 ## Description
-Displays a button next to the password field with which you can make the hidden password visible.
+Displays a button in the password field that allows you to make the hidden password visible.
 Important security measures have been built into the behavior of the toggle button to protect the user's password entry.
 - The show password button is not available until the user enters text in the password field.
 - When the password input field loses focus, the browser removes the password display button.
@@ -26,6 +26,11 @@ Go to "ACP" > "Customise" > "Manage extensions" and enable the "Show Hidden Pass
 - Go to "ACP" > "Customise" > "Manage extensions" and enable the "Show Hidden Password" extension.
 
 ## Changelog
+
+### v0.4.0 (21-08-2023)
+- Changed JS code to object
+- Added tooltip for the toogle button
+- Added ext.php to check system requirements
 
 ### v0.3.1 (13-08-2023)
 - Wrong element alignment with different security settings in ACP

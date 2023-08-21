@@ -1,0 +1,7 @@
+services:
+    imcger.showhiddenpassword.listener:
+        class: imcger\showhiddenpassword\event\main_listener
+        arguments:
+            - '@language'
+        tags:
+            - { name: event.listener }
