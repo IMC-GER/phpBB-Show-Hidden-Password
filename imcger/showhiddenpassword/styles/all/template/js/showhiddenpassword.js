@@ -7,73 +7,70 @@
  *
  */
 
-const imcgerPw = {
-
-	inputPwField: null,
-	buttonCode : '<button id="imcger-pw-togglebutton" type="button" onclick="imcgerPw.togglePw(this)"><i id="fa-eye" class="icon fa-eye fa-fw" aria-hidden="true"></i></button>',
-	pwToggle: null,
-	pwToggleVisible: false,
-	inputPaddRight: 0,
-	inputPaddLeft: 0,
-	keydownValue: 0,
-	inputValue: 0,
+class imcgerPw {
 
 	// Initialize the form
-	init: function (inputElement) {
+	constructor(inputElement, objName = 'imcgerPw') {
+		var thisObj = this;
+		
 		this.inputPwField = inputElement;
-		this.inputPwField.insertAdjacentHTML('afterend', this.buttonCode);
-		this.pwToggle = document.getElementById('imcger-pw-togglebutton');
+		this.objName = objName;
+		this.inputPwField.insertAdjacentHTML('afterend', '<button id="' + this.inputPwField.id + '_togglebutton" class="imcger-pw-togglebutton" type="button" onclick="' + this.objName + '.togglePw(this)"><i id="fa-eye" class="icon fa-eye fa-fw" aria-hidden="true"></i></button>');
+		this.pwToggle = document.getElementById(this.inputPwField.id + '_togglebutton');
 
-		this.inputPaddRight = window.getComputedStyle(this.inputPwField).getPropertyValue('padding-rigth');
-		this.inputPaddLeft  = window.getComputedStyle(this.inputPwField).getPropertyValue('padding-left');
+		this.inputPaddRight  = window.getComputedStyle(this.inputPwField).getPropertyValue('padding-rigth');
+		this.inputPaddLeft	 = window.getComputedStyle(this.inputPwField).getPropertyValue('padding-left');
+		this.pwToggleVisible = false;
+		this.keydownValue	 = 0;
+		this.inputValue		 = 0;
 
 		this.setWidth();
 		this.toggleOnOff('off');
 		this.pwToggle.setAttribute('title', imcgerPwToolTip.show);
 
 		window.addEventListener('resize', function () {
-			imcgerPw.setWidth();
+			thisObj.setWidth();
 		});
 
 		this.inputPwField.addEventListener('keydown', function () {
-			imcgerPw.keydownValue = imcgerPw.inputPwField.value.length;
+			thisObj.keydownValue = thisObj.inputPwField.value.length;
 
-			if (!imcgerPw.inputPwField.value.length) {
-				imcgerPw.pwToggleVisible = true;
+			if (!thisObj.inputPwField.value.length) {
+				thisObj.pwToggleVisible = true;
 			}
 		});
 
 		this.inputPwField.addEventListener('input', function () {
-			imcgerPw.inputValue = imcgerPw.inputPwField.value.length;
+			thisObj.inputValue = thisObj.inputPwField.value.length;
 		});
 
 		this.inputPwField.addEventListener('keyup', function () {
-			imcgerPw.pwToggleVisible = imcgerPw.pwToggleVisible && (Math.abs(imcgerPw.keydownValue - imcgerPw.inputValue) == 1) ? true : false;
+			thisObj.pwToggleVisible = thisObj.pwToggleVisible && (Math.abs(thisObj.keydownValue - thisObj.inputValue) == 1) ? true : false;
 
-			if (imcgerPw.inputPwField.value.length && imcgerPw.pwToggleVisible) {
-				imcgerPw.toggleOnOff('on');
-			} else if (!imcgerPw.inputPwField.value.length) {
-				imcgerPw.toggleOnOff('off');
+			if (thisObj.inputPwField.value.length && thisObj.pwToggleVisible) {
+				thisObj.toggleOnOff('on');
+			} else if (!thisObj.inputPwField.value.length) {
+				thisObj.toggleOnOff('off');
 			}
 		});
 
 		this.inputPwField.addEventListener('paste', function () {
-			if (imcgerPw.pwToggleVisible) {
-				imcgerPw.toggleOnOff('on');
+			if (thisObj.pwToggleVisible) {
+				thisObj.toggleOnOff('on');
 			}
 		});
 
 		document.addEventListener('mousedown', function(e) {
 			let target_id = e.target.id;
 
-			if(!(target_id == 'password') && !(target_id == 'imcger-pw-togglebutton') && !(target_id == 'fa-eye')) {
-				imcgerPw.toggleOnOff('off');
+			if(!(target_id == 'password') && !(target_id == thisObj.inputPwField.nextSibling.id) && !(target_id == 'fa-eye')) {
+				thisObj.toggleOnOff('off');
 			}
 		});
-	},
+	}
 
 	// Toggle make the password visible
-	togglePw: function (button) {
+	togglePw(button) {
 		let buttonIcon = button.children[0];
 
 		if (this.inputPwField.type == 'password') {
@@ -85,10 +82,10 @@ const imcgerPw = {
 			buttonIcon.className   = 'icon fa-eye fa-fw';
 			this.pwToggle.setAttribute('title', imcgerPwToolTip.show);
 		}
-	},
+	}
 
 	// Hide or display the eye
-	toggleOnOff: function (toggleOn) {
+	toggleOnOff(toggleOn) {
 
 		if (toggleOn == 'on') {
 			this.pwToggleVisible = true;
@@ -102,20 +99,28 @@ const imcgerPw = {
 
 		this.inputPwField.type = 'password';
 		this.pwToggle.firstChild.className = 'icon fa-eye fa-fw';
-	},
+	}
 
 	// Set width of password field
-	setWidth: function () {
+	setWidth() {
 		let inputFieldWidth = parseInt(document.getElementById('username').offsetWidth);
 
 		if (inputFieldWidth) {
 			this.inputPwField.classList.remove('autowidth');
 			this.inputPwField.style.width = inputFieldWidth + 'px';
 		}
-	},
+	}
 }
 
-// If the password input field is available, initialize the form
+// If the password input fields are available, initialize the form
 if (document.getElementById('password')) {
-	imcgerPw.init(document.getElementById('password'));
+	var imcgerPwStart = new imcgerPw(document.getElementById('password'), 'imcgerPwStart');
+}
+
+if (document.getElementById('new_password')) {
+	var imcgerPwNew = new imcgerPw(document.getElementById('new_password'), 'imcgerPwNew');
+}
+
+if (document.getElementById('password_confirm')) {
+	var imcgerPwConfirm = new imcgerPw(document.getElementById('password_confirm'), 'imcgerPwConfirm');
 }
