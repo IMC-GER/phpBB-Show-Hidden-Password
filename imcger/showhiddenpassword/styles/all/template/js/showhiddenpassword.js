@@ -10,9 +10,9 @@
 class imcgerPw {
 
 	// Initialize the form
-	constructor(inputElement, objName = 'imcgerPw') {
+	constructor(inputElement, objName) {
 		var thisObj = this;
-		
+
 		this.inputPwField = inputElement;
 		this.objName = objName;
 		this.inputPwField.insertAdjacentHTML('afterend', '<button id="' + this.inputPwField.id + '_togglebutton" class="imcger-pw-togglebutton" type="button" onclick="' + this.objName + '.togglePw(this)"><i id="fa-eye" class="icon fa-eye fa-fw" aria-hidden="true"></i></button>');
@@ -63,7 +63,7 @@ class imcgerPw {
 		document.addEventListener('mousedown', function(e) {
 			let target_id = e.target.id;
 
-			if(!(target_id == 'password') && !(target_id == thisObj.inputPwField.nextSibling.id) && !(target_id == 'fa-eye')) {
+			if(!(target_id == thisObj.inputPwField.id) && !(target_id == thisObj.inputPwField.nextSibling.id) && !(target_id == 'fa-eye')) {
 				thisObj.toggleOnOff('off');
 			}
 		});
