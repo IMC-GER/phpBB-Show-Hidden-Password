@@ -27,6 +27,10 @@ Go to "ACP" > "Customise" > "Manage extensions" and enable the "Show Hidden Pass
 
 ## Changelog
 
+### v0.5.0 (03-11-2023)
+- Changed JS code to class
+- Added support for password fields at register
+
 ### v0.4.0 (21-08-2023)
 - Changed JS code to object
 - Added tooltip for the toogle button
