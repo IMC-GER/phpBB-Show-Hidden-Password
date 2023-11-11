@@ -13,7 +13,7 @@ class imcgerPw {
 	constructor(inputElement) {
 		var thisObj = this;
 
-		this.userNameField = null
+		this.userNameField = null;
 		this.inputPwField  = inputElement;
 		this.inputPwField.classList.add('imcger-password');
 		this.inputPwField.insertAdjacentHTML('afterend', '<button id="' + this.inputPwField.id + '_togglebutton" class="imcger-pw-togglebutton" type="button"><i id="' + this.inputPwField.id + '_eye" class="icon fa-eye fa-fw" aria-hidden="true"></i></button>');
