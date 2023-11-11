@@ -13,9 +13,10 @@ class imcgerPw {
 	constructor(inputElement) {
 		var thisObj = this;
 
-		this.username = 'username';
-		this.inputPwField = inputElement;
-		this.inputPwField.insertAdjacentHTML('afterend', '<button id="' + this.inputPwField.id + '_togglebutton" class="imcger-pw-togglebutton" type="button"><i id="fa-eye" class="icon fa-eye fa-fw" aria-hidden="true"></i></button>');
+		this.userNameField = null
+		this.inputPwField  = inputElement;
+		this.inputPwField.classList.add('imcger-password');
+		this.inputPwField.insertAdjacentHTML('afterend', '<button id="' + this.inputPwField.id + '_togglebutton" class="imcger-pw-togglebutton" type="button"><i id="' + this.inputPwField.id + '_eye" class="icon fa-eye fa-fw" aria-hidden="true"></i></button>');
 		this.pwToggle = document.getElementById(this.inputPwField.id + '_togglebutton');
 
 		this.inputPaddRight  = window.getComputedStyle(this.inputPwField).getPropertyValue('padding-rigth');
@@ -24,9 +25,15 @@ class imcgerPw {
 		this.keydownValue	 = 0;
 		this.inputValue		 = 0;
 
-		// ACP SMTP-Passwort
-		if (this.inputPwField.id == 'smtp_password') {
-			this.username = 'smtp_username'
+		// Get the username field to determine the field width
+		if (document.getElementById('username')) {
+			this.userNameField = document.getElementById('username');
+		} else if (this.inputPwField.id == 'smtp_password') {
+			// For ACP SMTP-Passwort field
+			this.userNameField = document.getElementById('smtp_username');
+		} else if (document.getElementById('email')) {
+			// For password fields in the UCP
+			this.userNameField = document.getElementById('email');
 		}
 
 		this.setWidth();
@@ -44,7 +51,11 @@ class imcgerPw {
 			thisObj.togglePw(e.target);
 		});
 
-		this.inputPwField.addEventListener('keydown', function () {
+		this.inputPwField.addEventListener('keydown', function (e) {
+			if (e.which == 9) {
+				thisObj.toggleOnOff('off');
+			}
+
 			thisObj.keydownValue = thisObj.inputPwField.value.length;
 
 			if (!thisObj.inputPwField.value.length) {
@@ -72,10 +83,14 @@ class imcgerPw {
 			}
 		});
 
-		document.addEventListener('mousedown', function(e) {
-			let target_id = e.target.id;
+		this.inputPwField.addEventListener('focusout', function (e) {
+			if (!e.relatedTarget || !e.relatedTarget.id.endsWith('_togglebutton')) {
+				thisObj.toggleOnOff('off');
+			}
+		});
 
-			if(!(target_id == thisObj.inputPwField.id) && !(target_id == thisObj.inputPwField.nextSibling.id) && !(target_id == 'fa-eye')) {
+		this.inputPwField.nextSibling.addEventListener('focusout', function (e) {
+			if (!e.relatedTarget || e.relatedTarget.id != thisObj.inputPwField.id) {
 				thisObj.toggleOnOff('off');
 			}
 		});
@@ -83,7 +98,7 @@ class imcgerPw {
 
 	// Toggle make the password visible
 	togglePw(button) {
-		let buttonIcon = button;
+		let buttonIcon = button.id.endsWith('_togglebutton') ? button.firstChild : button;
 
 		if (this.inputPwField.type == 'password') {
 			this.inputPwField.type = 'text';
@@ -107,7 +122,7 @@ class imcgerPw {
 
 		if (toggleOn == 'on') {
 			this.pwToggleVisible = true;
-			this.pwToggle.style.display = 'initial';
+			this.pwToggle.style.display = 'inline-block';
 			this.inputPwField.style.paddingRight = this.inputPaddRight;
 		} else {
 			this.pwToggleVisible = false;
@@ -119,11 +134,10 @@ class imcgerPw {
 		}
 	}
 
-	// Set width of password field
+	// Set the width of the password field to the width of the user input field
 	setWidth() {
-		// Do nothing if no username field recognized
-		if (document.getElementById(this.username)) {
-			let inputFieldWidth = parseInt(document.getElementById(this.username).offsetWidth);
+		if (this.userNameField) {
+			let inputFieldWidth = parseInt(this.userNameField.offsetWidth);
 
 			if (inputFieldWidth) {
 				this.inputPwField.classList.remove('autowidth');

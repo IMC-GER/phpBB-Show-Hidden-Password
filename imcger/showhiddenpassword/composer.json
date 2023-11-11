@@ -3,8 +3,8 @@
     "type": "phpbb-extension",
     "description": "Displays a button in the password field that allows you to make the hidden password visible.",
     "homepage": "",
-    "version": "0.6.0",
-    "time": "2023-11-08",
+    "version": "0.6.1",
+    "time": "2023-11-11",
     "keywords": ["phpbb", "extension", "showhiddenpassword"],
     "license": "GPL-2.0-only",
     "authors": [
