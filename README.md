@@ -28,7 +28,7 @@ Go to "ACP" > "Customise" > "Manage extensions" and enable the "Show Hidden Pass
 ## Changelog
 
 ### v0.6.1 (11-11-2023)
-- Fixed don't hide password when lesve the field with tab key
+- Fixed don't hide password when leave the field with tab key
 - Fixed change style when toggle the password whith space key
 - Fixed different length of password input fields
 
