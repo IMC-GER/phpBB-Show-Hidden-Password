@@ -3,5 +3,5 @@
 
 .gitattributes export-ignore
 .editorconfig export-ignore
-README.md export-ignore
-showhiddenpassword_version.json export-ignore
+/README.md export-ignore
+/showhiddenpassword_version.json export-ignore
